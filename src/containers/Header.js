@@ -9,6 +9,10 @@ const Header = () => {
   const userEmail = localStorage.getItem("userEmail");
 
   const navigate = useNavigate();
+  const handleViewCart = () => {
+    // Navigate to the /cart route
+    navigate("/cart");
+  };
   const handleSignOut = () => {
     // Remove the user's sign-in status from local storage
     localStorage.removeItem("isSignedIn");
@@ -26,12 +30,17 @@ const Header = () => {
   return (
     <div className="ui fixed menu">
       <div className="ui container center">
-        <h2>GLA SHOP</h2>
+        <Link to="/">
+          <h1>Gla Shop</h1>
+        </Link>
       </div>
       {isSignedIn ? (
         <div>
           <p style={{ marginRight: "10px" }}>Welcome, {userEmail}!</p>
           <button onClick={handleSignOut}>Sign Out</button>
+          <button onClick={handleViewCart} style={{ marginLeft: "10px" }}>
+            Cart
+          </button>
         </div>
       ) : (
         <Link to="/signin">
